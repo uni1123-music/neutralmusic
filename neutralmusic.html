@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>neutral music | 音楽制作・サウンドクリエイター</title>
+    <!-- Tailwind CSSの読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 蛍光色を抑えたモダンなカスタマイズ設定 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neutral: {
+                            50: '#f9fafb',
+                            100: '#f3f4f6',
+                            200: '#e5e7eb',
+                            300: '#d1d5db',
+                            400: '#9ca3af',
+                            500: '#6b7280',
+                            600: '#4b5563',
+                            700: '#374151',
+                            800: '#1f2937',
+                            900: '#111827',
+                        },
+                        brand: {
+                            light: '#e0e7ff',
+                            DEFAULT: '#4f46e5', // 落ち着いたインディゴ
+                            dark: '#312e81',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', 'Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif';
+            color: #374151; /* neutral-700 */
+            background-color: #f9fafb; /* neutral-50 */
+        }
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-light selection:text-brand-dark">
+
+    <!-- Header / Navigation -->
+    <header class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold tracking-tighter text-neutral-900">
+                        neutral <span class="text-brand">music</span>
+                    </a>
+                </div>
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-neutral-600 hover:text-brand transition-colors px-3 py-2 text-sm font-medium">About</a>
+                    <a href="#members" class="text-neutral-600 hover:text-brand transition-colors px-3 py-2 text-sm font-medium">Members</a>
+                    <a href="#portfolio" class="text-neutral-600 hover:text-brand transition-colors px-3 py-2 text-sm font-medium">Portfolio</a>
+                    <a href="#contact" class="text-neutral-600 hover:text-brand transition-colors px-3 py-2 text-sm font-medium">Contact</a>
+                </nav>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button type="button" class="text-neutral-500 hover:text-neutral-900 focus:outline-none" onclick="toggleMobileMenu()">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-neutral-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block text-neutral-600 hover:bg-neutral-100 hover:text-brand px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#members" class="block text-neutral-600 hover:bg-neutral-100 hover:text-brand px-3 py-2 rounded-md text-base font-medium">Members</a>
+                <a href="#portfolio" class="block text-neutral-600 hover:bg-neutral-100 hover:text-brand px-3 py-2 rounded-md text-base font-medium">Portfolio</a>
+                <a href="#contact" class="block text-neutral-600 hover:bg-neutral-100 hover:text-brand px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-neutral-900 text-white">
+        <div class="absolute inset-0 z-0">
+            <!-- 落ち着いた背景グラデーション -->
+            <div class="absolute inset-0 bg-gradient-to-br from-neutral-800 to-neutral-900 opacity-90"></div>
+            <!-- 背景画像プレースホルダー (必要に応じて差し替え) -->
+            <img src="https://placehold.co/1920x1080/1f2937/1f2937?text=+" alt="Background" class="w-full h-full object-cover mix-blend-overlay opacity-30">
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
+                賛否両論の曲でも<br class="md:hidden">誰かに刺さる曲を
+            </h1>
+            <p class="mt-4 max-w-2xl text-lg md:text-xl text-neutral-300 mx-auto mb-10">
+                neutral musicは、賛否両論の曲でも誰かに刺さる曲をモットーに、<br>自主制作、依頼請負を行うグループです。</br>
+            </p>
+            <div>
+                <a href="#contact" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand hover:bg-brand-dark transition-colors duration-300 md:text-lg">
+                    制作を依頼する
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white section-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-neutral-900 mb-4">About Us</h2>
+                <div class="w-16 h-1 bg-brand mx-auto rounded"></div>
+            </div>
+            <div class="max-w-3xl mx-auto text-lg text-neutral-600 leading-relaxed text-center">
+                <p class="mb-6">
+                    「neutral music」は、2025年3月に結成された音楽、イラストなども請け負うグループです。
+                </p>
+                <p>
+                    様々な音楽性、イラストスタイルを持ったクリエイターが、<br>依頼者様に最高の音楽を提供します。<br>
+                </p>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section id="members" class="py-20 bg-neutral-50 section-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-neutral-900 mb-4">Members</h2>
+                <div class="w-16 h-1 bg-brand mx-auto rounded"></div>
+                <p class="mt-4 text-neutral-500">個性豊かなクリエイターたち</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- Member 1 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-neutral-100 hover:shadow-md transition-shadow duration-300">
+                    <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden bg-neutral-200">
+                        <img src="c:\Users\yunih\Downloads\YUtqtrZB_400x400 (1).jpg" alt="Member 1" class="object-cover w-full h-64">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-neutral-900 mb-1">cocheta.uni</h3>
+                        <p class="text-sm text-brand mb-4">neutral music代表/作曲/作詞</p>
+                        <p class="text-neutral-600 text-sm">
+                            ボカロP、
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-neutral-100 hover:shadow-md transition-shadow duration-300">
+                    <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden bg-neutral-200">
+                        <img src="https://placehold.co/400x400/e5e7eb/6b7280?text=Member+2" alt="Member 2" class="object-cover w-full h-64">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-neutral-900 mb-1">Creator Name 2</h3>
+                        <p class="text-sm text-brand mb-4">Sound Designer</p>
+                        <p class="text-neutral-600 text-sm">
+                            細部までこだわったSE（効果音）制作のエキスパート。ゲームサウンドのデザインを主に担当。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-neutral-100 hover:shadow-md transition-shadow duration-300">
+                    <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden bg-neutral-200">
+                        <img src="https://placehold.co/400x400/e5e7eb/6b7280?text=Member+3" alt="Member 3" class="object-cover w-full h-64">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-neutral-900 mb-1">Creator Name 3</h3>
+                        <p class="text-sm text-brand mb-4">Mix / Mastering Engineer</p>
+                        <p class="text-neutral-600 text-sm">
+                            音のバランスを整え、作品のクオリティを最終的に引き上げるエンジニア。アコースティック音源の処理が得意。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-white section-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-neutral-900 mb-4">Portfolio</h2>
+                <div class="w-16 h-1 bg-brand mx-auto rounded"></div>
+            </div>
+
+            <!-- Tabs for Portfolio -->
+            <div class="flex justify-center space-x-4 mb-12">
+                <button onclick="showPortfolio('group')" id="tab-group" class="px-6 py-2 rounded-full text-sm font-medium bg-neutral-800 text-white transition-colors">Group Works</button>
+                <button onclick="showPortfolio('individual')" id="tab-individual" class="px-6 py-2 rounded-full text-sm font-medium bg-neutral-200 text-neutral-600 hover:bg-neutral-300 transition-colors">Individual Works</button>
+            </div>
+
+            <!-- Group Portfolio Content -->
+            <div id="portfolio-group" class="grid grid-cols-1 md:grid-cols-2 gap-8 portfolio-content block">
+                <div class="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+                    <img src="https://placehold.co/600x400/d1d5db/4b5563?text=Project+Alpha" alt="Project Alpha" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-neutral-900 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center p-6 text-center">
+                        <h4 class="text-white text-xl font-bold mb-2">スマートフォン向けRPG BGM/SE一式</h4>
+                        <p class="text-neutral-300 text-sm mb-4">neutral musicとして全サウンドプロデュースを担当。</p>
+                        <a href="#" class="text-brand-light hover:text-white underline text-sm">詳細を見る (リンク先ダミー)</a>
+                    </div>
+                </div>
+                <div class="group relative rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+                    <img src="https://placehold.co/600x400/d1d5db/4b5563?text=Project+Beta" alt="Project Beta" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-neutral-900 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center p-6 text-center">
+                        <h4 class="text-white text-xl font-bold mb-2">企業プロモーションビデオ 楽曲制作</h4>
+                        <p class="text-neutral-300 text-sm mb-4">映像の展開に合わせたオーケストラ楽曲を制作。</p>
+                        <a href="#" class="text-brand-light hover:text-white underline text-sm">詳細を見る (リンク先ダミー)</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Individual Portfolio Content (Hidden by default) -->
+            <div id="portfolio-individual" class="portfolio-content hidden space-y-12">
+                <!-- Creator 1 Works -->
+                <div>
+                    <h3 class="text-2xl font-bold text-neutral-800 border-b pb-2 mb-6">Creator Name 1's Works</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        <div class="bg-neutral-50 rounded-lg p-4 border border-neutral-100">
+                            <h4 class="font-bold mb-2">インディーゲーム「〇〇」テーマ曲</h4>
+                            <p class="text-sm text-neutral-600">作曲・編曲担当</p>
+                        </div>
+                        <div class="bg-neutral-50 rounded-lg p-4 border border-neutral-100">
+                            <h4 class="font-bold mb-2">舞台「△△」劇伴</h4>
+                            <p class="text-sm text-neutral-600">作曲担当</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Creator 2 Works -->
+                <div>
+                    <h3 class="text-2xl font-bold text-neutral-800 border-b pb-2 mb-6">Creator Name 2's Works</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        <div class="bg-neutral-50 rounded-lg p-4 border border-neutral-100">
+                            <h4 class="font-bold mb-2">アプリ「□□」UIサウンド</h4>
+                            <p class="text-sm text-neutral-600">サウンドデザイン担当</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Order Link Section -->
+    <section id="contact" class="py-20 bg-neutral-900 text-white section-fade-in">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-6">ご依頼・お問い合わせ</h2>
+            <p class="text-neutral-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+                楽曲制作、サウンドデザイン、ミックス・マスタリングなど、音に関することなら何でもお気軽にご相談ください。<br>
+                お見積もりだけでも歓迎いたします。
+            </p>
+            
+            <div class="bg-neutral-800 p-8 rounded-2xl border border-neutral-700 shadow-xl">
+                <h3 class="text-xl font-medium mb-4">制作依頼フォームはこちら</h3>
+                <p class="text-sm text-neutral-400 mb-6">Googleフォーム等、外部のフォームサービスへのリンクを設置します。</p>
+                <!-- リンク先（href）を実際のフォームURLに変更してください -->
+                <a href="https://docs.google.com/forms/..." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-white bg-brand hover:bg-brand-dark shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto">
+                    依頼フォームを開く (外部サイト)
+                    <svg class="ml-2 -mr-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+                <p class="mt-4 text-xs text-neutral-500">※ご返信まで2〜3営業日いただく場合がございます。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specific Commercial Transactions Law Section (特定商取引法に基づく表記) -->
+    <section id="law" class="py-16 bg-neutral-100 section-fade-in">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white p-8 rounded-xl border border-neutral-200 shadow-sm">
+                <h2 class="text-2xl font-bold text-neutral-900 mb-8 text-center">特定商取引法に基づく表記</h2>
+                
+                <div class="space-y-4 text-sm text-neutral-700">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 border-b border-neutral-100 pb-4">
+                        <div class="font-bold sm:col-span-1">販売事業者名</div>
+                        <div class="sm:col-span-2">neutral music (※屋号や代表者名を入力してください)</div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 border-b border-neutral-100 pb-4">
+                        <div class="font-bold sm:col-span-1">代表責任者名</div>
+                        <div class="sm:col-span-2">[代表者氏名]</div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 border-b border-neutral-100 pb-4">
+                        <div class="font-bold sm:col-span-1">所在地</div>
+                        <div class="sm:col-span-2">〒000-0000<br>東京都〇〇区〇〇 1-2-3 (※実際の住所を入力するか、「請求があったら遅滞なく開示します」等の記載にしてください)</div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 border-b border-neutral-100 pb-4">
+                        <div class="font-bold sm:col-span-1">電話番号</div>
+                        <div class="sm:col-span-2">090-XXXX-XXXX (※「請求があったら遅滞なく開示します」等の記載も可)</div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 border-b border-neutral-100 pb-4">
+                        <div class="font-bold sm:col-span-1">メールアドレス</div>
+                        <div class="sm:col-span-2">contact@neutralmusic.example.com</div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 border-b border-neutral-100 pb-4">
+                        <div class="font-bold sm:col-span-1">販売価格</div>
+                        <div class="sm:col-span-2">各プロジェクトのお見積もりにより決定いたします。</div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 border-b border-neutral-100 pb-4">
+                        <div class="font-bold sm:col-span-1">商品代金以外に必要な料金</div>
+                        <div class="sm:col-span-2">銀行振込手数料（振込の場合）</div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 border-b border-neutral-100 pb-4">
+                        <div class="font-bold sm:col-span-1">お支払方法</div>
+                        <div class="sm:col-span-2">銀行振込、クレジットカード決済（※対応しているものを記載）</div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 border-b border-neutral-100 pb-4">
+                        <div class="font-bold sm:col-span-1">納品時期</div>
+                        <div class="sm:col-span-2">ご契約時にお客様と合意した納期にデジタルデータにて納品いたします。</div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <div class="font-bold sm:col-span-1">返品・キャンセル・修正について</div>
+                        <div class="sm:col-span-2">
+                            デジタルデータという商品の性質上、納品後の返品・返金はお受けできません。<br>
+                            制作途中でのキャンセルの場合は、進行度合いに応じたキャンセル料が発生いたします。<br>
+                            修正はご契約時に定めた回数まで無償で対応し、超過分は別途お見積もりとさせていただきます。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-900 text-neutral-400 py-12 border-t border-neutral-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="text-xl font-bold text-white tracking-tighter">neutral <span class="text-brand">music</span></span>
+            </div>
+            <div class="flex space-x-6 text-sm">
+                <a href="#about" class="hover:text-white transition-colors">About</a>
+                <a href="#law" class="hover:text-white transition-colors">特定商取引法に基づく表記</a>
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="text-center text-xs mt-8">
+            &copy; <span id="year"></span> neutral music. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Portfolio Tab Switching Logic
+        function showPortfolio(type) {
+            const groupTab = document.getElementById('tab-group');
+            const individualTab = document.getElementById('tab-individual');
+            const groupContent = document.getElementById('portfolio-group');
+            const individualContent = document.getElementById('portfolio-individual');
+
+            if (type === 'group') {
+                groupTab.className = "px-6 py-2 rounded-full text-sm font-medium bg-neutral-800 text-white transition-colors";
+                individualTab.className = "px-6 py-2 rounded-full text-sm font-medium bg-neutral-200 text-neutral-600 hover:bg-neutral-300 transition-colors";
+                groupContent.classList.remove('hidden');
+                individualContent.classList.add('hidden');
+            } else {
+                individualTab.className = "px-6 py-2 rounded-full text-sm font-medium bg-neutral-800 text-white transition-colors";
+                groupTab.className = "px-6 py-2 rounded-full text-sm font-medium bg-neutral-200 text-neutral-600 hover:bg-neutral-300 transition-colors";
+                individualContent.classList.remove('hidden');
+                groupContent.classList.add('hidden');
+            }
+        }
+
+        // Scroll Fade-in Animation Observer
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // 一度表示されたら監視を解除
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.section-fade-in').forEach((section) => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
